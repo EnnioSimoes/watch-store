@@ -31,11 +31,7 @@
             Brand
           </div>
           <div class="flex items-center justify-end w-full">
-            <button
-              data-testid="toggle-button"
-              class="text-gray-600 focus:outline-none mx-4 sm:mx-0"
-              @click="toggleCart"
-            >
+            <button class="text-gray-600 focus:outline-none mx-4 sm:mx-0">
               <svg
                 class="h-5 w-5"
                 fill="none"
@@ -98,13 +94,7 @@
         </nav>
       </div>
     </header>
-    <cart
-      :products="products"
-      :is-open="isCartOpen"
-      @close="toggleCart"
-      @checkout="checkout"
-    />
-    <h2 v-if="hasError" data-testid="error-message">{{ errorMessage }}</h2>
+    <!-- <cart /> -->
     <nuxt />
     <footer class="bg-gray-200">
       <div
@@ -120,45 +110,10 @@
 </template>
 
 <script>
-import Cart from '@/components/Cart'
-
+// import Cart from '@/components/Cart'
 export default {
   name: 'EosDefault',
-  components: { Cart },
-  data() {
-    return {
-      errorMessage: '',
-    }
-  },
-  computed: {
-    isCartOpen() {
-      return this.$cart.getState().open
-    },
-    products() {
-      return this.$cart.getState().items
-    },
-    hasError() {
-      return this.errorMessage !== ''
-    },
-  },
-  methods: {
-    async checkout({ email }) {
-      try {
-        const products = this.$cart.getState().items
-        this.$axios.setHeader('email', email)
-        await this.$axios.post('/api/order', { products })
-        this.$cart.clearProducts()
-      } catch (error) {
-        this.errorMessage = 'Fail to save order'
-      }
-    },
-    toggleCart() {
-      if (this.$cart.getState().open) {
-        this.$cart.close()
-      } else {
-        this.$cart.open()
-      }
-    },
-  },
+
+  // components: { Cart },
 }
 </script>

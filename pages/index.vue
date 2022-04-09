@@ -1,6 +1,6 @@
 <template>
   <main class="my-8">
-    <!-- <search @doSearch="setSearchTerm" /> -->
+    <search @doSearch="setSearchTerm" />
     <div v-if="errorMessage === ''" class="container mx-auto px-6">
       <h3 class="text-gray-700 text-2xl font-medium">Wrist Watch</h3>
       <span
@@ -25,38 +25,38 @@
 
 <script>
 import ProductCard from '@/components/ProductCard'
-// import Search from '@/components/Search'
+import Search from '@/components/Search'
 
 export default {
   name: 'EosIndex',
   components: {
     ProductCard,
-    // Search
+    Search,
   },
   data() {
     return {
       products: [],
-      // errorMessage: '',
-      // searchTerm: '',
+      errorMessage: '',
+      searchTerm: '',
     }
   },
-  // computed: {
-  //   list() {
-  //     if (this.searchTerm !== '') {
-  //       return this.products.filter(({ title }) => {
-  //         return title.includes(this.searchTerm)
-  //       })
-  //     }
-  //     return this.products
-  //   },
-  //   quantityLabel() {
-  //     const {
-  //       list: { length },
-  //     } = this
+  computed: {
+    list() {
+      if (this.searchTerm !== '') {
+        return this.products.filter(({ title }) => {
+          return title.includes(this.searchTerm)
+        })
+      }
+      return this.products
+    },
+    //   quantityLabel() {
+    //     const {
+    //       list: { length },
+    //     } = this
 
-  //     return length === 1 ? `${length} Product` : `${length} Products`
-  //   },
-  // },
+    //     return length === 1 ? `${length} Product` : `${length} Products`
+    //   },
+  },
   async created() {
     try {
       this.products = (await this.$axios.get('/api/products')).data.products
@@ -64,10 +64,10 @@ export default {
       this.errorMessage = 'Problemas ao carregar a lista!'
     }
   },
-  // methods: {
-  //   setSearchTerm({ term }) {
-  //     this.searchTerm = term
-  //   },
-  // },
+  methods: {
+    setSearchTerm({ term }) {
+      this.searchTerm = term
+    },
+  },
 }
 </script>

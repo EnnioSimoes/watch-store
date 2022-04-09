@@ -66,3 +66,10 @@ More information about the usage of this directory in [the documentation](https:
 This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+
+- 13. Componente de Busca - parte 1 -OK
+- 14. Componente de Busca - parte 2 -OK
+- 19. Implementar busca produtos com TDD -OK
+- 20. Finalizar implementação da busca -OK
+- 21. Abstrair ações comuns -OK
+- 22. Diferença entre mount() e shallowMount()
